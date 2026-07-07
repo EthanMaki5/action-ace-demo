@@ -13,7 +13,7 @@ const quickLinks = [
 export default function Footer() {
   return (
     <footer className="bg-navy-900 text-blue-100/80">
-      <Container className="py-16">
+      <Container className="pt-16 pb-28 sm:pb-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <span className="font-display text-xl font-extrabold text-white">
@@ -59,8 +59,8 @@ export default function Footer() {
                   href={business.phoneHref}
                   className="flex items-center gap-2 text-sm hover:text-white transition-colors"
                 >
-                  <Phone size={16} />
-                  {business.phone}
+                  <Phone size={16} className="flex-shrink-0" />
+                  <span className="break-words">{business.phone}</span>
                 </a>
               </li>
               <li>
@@ -68,8 +68,8 @@ export default function Footer() {
                   href={`mailto:${business.email}`}
                   className="flex items-center gap-2 text-sm hover:text-white transition-colors"
                 >
-                  <Mail size={16} />
-                  {business.email}
+                  <Mail size={16} className="flex-shrink-0" />
+                  <span className="min-w-0 break-words">{business.email}</span>
                 </a>
               </li>
             </ul>

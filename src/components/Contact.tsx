@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { ChevronDown, Mail, MapPin, Phone, Send } from "lucide-react";
 import { business, services } from "@/lib/site-data";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -56,7 +56,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 flex flex-col gap-5"
+            className="lg:col-span-2 min-w-0 flex flex-col gap-5"
           >
             <a
               href={business.phoneHref}
@@ -65,9 +65,9 @@ export default function Contact() {
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600 text-white flex-shrink-0">
                 <Phone size={22} />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-blue-100/70 font-medium">Call or Text</p>
-                <p className="text-lg font-semibold text-white">{business.phone}</p>
+                <p className="text-lg font-semibold text-white break-words">{business.phone}</p>
               </div>
             </a>
 
@@ -78,9 +78,9 @@ export default function Contact() {
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600 text-white flex-shrink-0">
                 <Mail size={22} />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-blue-100/70 font-medium">Email</p>
-                <p className="text-lg font-semibold text-white">{business.email}</p>
+                <p className="text-lg font-semibold text-white break-words">{business.email}</p>
               </div>
             </a>
 
@@ -88,9 +88,9 @@ export default function Contact() {
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-blue-600 text-white flex-shrink-0">
                 <MapPin size={22} />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-blue-100/70 font-medium">Based In</p>
-                <p className="text-lg font-semibold text-white">{business.city}</p>
+                <p className="text-lg font-semibold text-white break-words">{business.city}</p>
               </div>
             </div>
           </motion.div>
@@ -101,10 +101,10 @@ export default function Contact() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.1 }}
             onSubmit={handleSubmit}
-            className="lg:col-span-3 bg-white rounded-3xl p-8 sm:p-10 shadow-2xl"
+            className="lg:col-span-3 min-w-0 bg-white rounded-3xl p-8 sm:p-10 shadow-2xl"
           >
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div className="sm:col-span-2">
+            <div className="grid sm:grid-cols-2 gap-5 min-w-0">
+              <div className="sm:col-span-2 min-w-0">
                 <label
                   htmlFor="name"
                   className="block text-sm font-semibold text-navy-900 mb-2"
@@ -116,12 +116,12 @@ export default function Contact() {
                   name="name"
                   type="text"
                   required
-                  className="w-full rounded-xl border border-navy-950/15 px-4 py-3 text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full min-w-0 rounded-xl border border-navy-950/15 px-4 py-3 text-base text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
                   placeholder="Your full name"
                 />
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <label
                   htmlFor="phone"
                   className="block text-sm font-semibold text-navy-900 mb-2"
@@ -133,12 +133,12 @@ export default function Contact() {
                   name="phone"
                   type="tel"
                   required
-                  className="w-full rounded-xl border border-navy-950/15 px-4 py-3 text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full min-w-0 rounded-xl border border-navy-950/15 px-4 py-3 text-base text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
                   placeholder="(780) 555-0123"
                 />
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <label
                   htmlFor="email"
                   className="block text-sm font-semibold text-navy-900 mb-2"
@@ -150,55 +150,61 @@ export default function Contact() {
                   name="email"
                   type="email"
                   required
-                  className="w-full rounded-xl border border-navy-950/15 px-4 py-3 text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  className="w-full min-w-0 rounded-xl border border-navy-950/15 px-4 py-3 text-base text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
                   placeholder="you@email.com"
                 />
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-2 min-w-0">
                 <label
                   htmlFor="service"
                   className="block text-sm font-semibold text-navy-900 mb-2"
                 >
                   Service Needed
                 </label>
-                <select
-                  id="service"
-                  name="service"
-                  required
-                  defaultValue=""
-                  className="w-full rounded-xl border border-navy-950/15 px-4 py-3 text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                >
-                  <option value="" disabled>
-                    Select a service
-                  </option>
-                  {services.map((service) => (
-                    <option key={service.title} value={service.title}>
-                      {service.title}
+                <div className="relative">
+                  <select
+                    id="service"
+                    name="service"
+                    required
+                    defaultValue=""
+                    className="w-full min-w-0 appearance-none rounded-xl border border-navy-950/15 px-4 py-3 pr-10 text-base text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  >
+                    <option value="" disabled>
+                      Select a service
                     </option>
-                  ))}
-                  <option value="Other">Other / Not Sure</option>
-                </select>
+                    {services.map((service) => (
+                      <option key={service.title} value={service.title}>
+                        {service.title}
+                      </option>
+                    ))}
+                    <option value="Other">Other / Not Sure</option>
+                  </select>
+                  <ChevronDown
+                    size={18}
+                    className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500"
+                  />
+                </div>
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-2 min-w-0">
                 <span className="block text-sm font-semibold text-navy-900 mb-2">
                   Preferred Contact Method
                 </span>
-                <div className="flex gap-3">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 min-w-0">
                   {contactMethods.map((method) => (
                     <label
                       key={method}
-                      className="flex-1 flex items-center justify-center gap-2 rounded-xl border border-navy-950/15 px-4 py-3 cursor-pointer has-checked:border-blue-600 has-checked:bg-blue-50 transition-colors"
+                      className="flex-1 min-w-0 flex items-center justify-start sm:justify-center gap-2 rounded-xl border border-navy-950/15 px-4 py-3 cursor-pointer has-checked:border-blue-600 has-checked:bg-blue-50 transition-colors"
                     >
                       <input
                         type="radio"
                         name="preferredContact"
                         value={method}
                         defaultChecked={method === "Phone"}
-                        className="accent-blue-600"
+                        className="accent-blue-600 flex-shrink-0"
                       />
-                      <span className="text-sm font-medium text-navy-900">
+                      <span className="text-sm font-medium text-navy-900 truncate">
                         {method}
                       </span>
                     </label>
@@ -206,7 +212,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-2 min-w-0">
                 <label
                   htmlFor="message"
                   className="block text-sm font-semibold text-navy-900 mb-2"
@@ -218,7 +224,7 @@ export default function Contact() {
                   name="message"
                   rows={4}
                   required
-                  className="w-full rounded-xl border border-navy-950/15 px-4 py-3 text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none"
+                  className="w-full min-w-0 rounded-xl border border-navy-950/15 px-4 py-3 text-base text-navy-900 focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none"
                   placeholder="Tell us what's going on..."
                 />
               </div>
