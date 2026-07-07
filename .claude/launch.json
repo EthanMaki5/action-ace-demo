@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "C:\\Users\\ethan\\OneDrive\\Documents\\Clients\\Ace Action Plumbing\\dev.bat"],
+      "port": 3000
+    }
+  ]
+}
